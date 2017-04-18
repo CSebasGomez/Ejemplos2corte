@@ -12,6 +12,10 @@ package ClaseInterfase.Ejemplo1;
 public class Cash implements Asset {
     private double amount;
 
+    public Cash(double amount) {
+        this.amount = amount;
+    }
+    
     @Override
     public double getMarketValue() {
         return this.amount;
@@ -21,6 +25,15 @@ public class Cash implements Asset {
     public double getProfit() {
         return 0;
     }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+    
     
     
     

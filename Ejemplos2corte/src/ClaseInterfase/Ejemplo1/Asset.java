@@ -12,5 +12,6 @@ package ClaseInterfase.Ejemplo1;
 public interface Asset {
     public double getMarketValue(); // si se coloca el abstract o no , no importa lo toma como un abstract
     public abstract double getProfit();
+    //una interfaz no tiene atributos, solo contructores abstractos
     
 }

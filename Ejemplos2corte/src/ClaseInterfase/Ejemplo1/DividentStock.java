@@ -11,6 +11,11 @@ package ClaseInterfase.Ejemplo1;
  */
 public class DividentStock extends Stock{
     private double dividends;
+
+    public DividentStock(double dividends, int totalShares, String symbol, double totalCost, double currentPrice) {
+        super(totalShares, symbol, totalCost, currentPrice);
+        this.dividends = dividends;
+    }
     
     @Override
     public double getMarketValue(){
