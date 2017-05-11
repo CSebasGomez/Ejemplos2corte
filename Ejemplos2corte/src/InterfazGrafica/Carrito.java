@@ -12,8 +12,12 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -42,6 +46,7 @@ public class Carrito extends JFrame {
 class NewPanel2 extends JPanel implements ActionListener,MouseListener{
     private int x=20;
     private int y=8;
+    private int m=0;
     private Timer timer;
     private int secuencia;
     int z=0;
@@ -57,8 +62,8 @@ class NewPanel2 extends JPanel implements ActionListener,MouseListener{
     public void actionPerformed(ActionEvent e) {
             
             if(z%2==0){
-                x+=10;
-                y+=2;
+                x+=1;
+                y+=1;
                 if(this.secuencia ==3){
                 this.secuencia=0;
                 }
@@ -73,7 +78,7 @@ class NewPanel2 extends JPanel implements ActionListener,MouseListener{
             }
             else{
                 x-=1;
-                y-=2;
+                y-=1;
                 if(this.secuencia ==5){
                 this.secuencia=0;
                 }
@@ -109,8 +114,11 @@ class NewPanel2 extends JPanel implements ActionListener,MouseListener{
 
     public NewPanel2() {
         this.addMouseListener(this);
-        timer = new Timer (40,this);
+        timer = new Timer (20,this);
+        addKeyListener(new TAdapter());
+        setFocusable(true);
         timer.start();
+        
     }
     
     @Override
@@ -122,7 +130,7 @@ class NewPanel2 extends JPanel implements ActionListener,MouseListener{
         
         Image Persona = loadImage("free_radical_game_sprites.png");
      
-        g.drawImage(Persona,x,80,x+32,80+32,(this.secuencia*32)+32,0,32,32,this);
+        g.drawImage(Persona,m,80,m+32,80+32,(this.secuencia*32)+32,0,32,32,this);
         
      
         Image moto = loadImage("scooter.gif");
@@ -208,6 +216,31 @@ class NewPanel2 extends JPanel implements ActionListener,MouseListener{
     @Override
     public void mouseExited(MouseEvent e) {
         
+    }
+    private class TAdapter extends KeyAdapter{
+        @Override
+        public void keyReleased(KeyEvent e){
+            System.out.println("Bye");
+        }
+        @Override
+        public void keyPressed(KeyEvent e){
+            System.out.println("Holi");
+            int key = e.getKeyCode();
+            if(key==KeyEvent.VK_NUMPAD0){
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    System.out.println("Algo Paso");
+                }
+            }
+            else if (key==KeyEvent.VK_RIGHT){
+                m+=10;
+            }
+            else if (key==KeyEvent.VK_LEFT){
+                m-=10;
+            }
+            
+        }
     }
 }
 
